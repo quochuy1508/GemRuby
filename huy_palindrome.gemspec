@@ -8,21 +8,25 @@ Gem::Specification.new do |spec|
   spec.authors       = ["QuocHuy"]
   spec.email         = ["huynikee37@gmail.com"]
 
-  spec.summary       = %q{Palindrome detector}}
+  spec.summary       = %q{Palindrome detector}
   spec.description   = %q{Learn Enough Ruby palindrome detector}
   spec.homepage      = ""
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "https://github.com/quochuy1508/GemRuby.git"
-
-  spec.metadata["homepage_uri"] = spec.homepage
-  #spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  #spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  if spec.respond_to?(:metadata)
+    spec.metadata["allowed_push_host"] = "https://rubygems.org/"
+  else
+    raise "RubyGems 2.0 or newer is required to protect against " \
+      "public gem pushes."
+  end
 
   # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  # The `git ls-files -z` loads the files in the RubyGem
+  # that have been added into git.
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+    `git ls-files -z`.split("\x0").reject do
+    |f| f.match(%r{^(test|spec|features)/})
+    end
   end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
